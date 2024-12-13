@@ -1,0 +1,60 @@
+class Order:
+
+    _tax_rate = 0.0725
+ # taxrate 
+
+    def __init__(self):
+         """Initialize an empty order."""
+         self._items = []
+
+    def get_items(self):
+        """Return the list of items (drinks) in the order."""
+        return self._items
+
+    def get_total(self):
+        """Calculate and return the total cost of the order. Assuming each drink costs 5 units."""
+        return len(self._items)
+
+    def get_num_items(self):
+        """Return the number of items (drinks) in the order."""
+        return len(self._items)
+
+    def get_total(self):
+        return sum(drink.get_total() for drink in self._item)
+
+    def get_tax(self):
+        return self.get_total() * (1 + self._tax_rate)
+
+    def get_receipt(self):
+        total_cost = 0.0
+        receipt_data = {
+           
+            "number_drinks": self.get_num_items(),
+            "drinks": [],
+            "subtotal": self.get_num_total(),
+            "tax": self.get_total() * self._tax_rate,
+            "grand total": self.get_tax() 
+        }
+
+        for i, drink in enumerate(self._items):
+           drink_data = {
+            "number_drinks": i + 1,
+            "base": drink.get_base(),
+            "size": drink.get_size(),
+            "flavors": drink.get_flavors(),
+            "total_cost": drink.get_total()
+           }
+        receipt_data["drinks"].appeend(drink_data)
+        return receipt_data
+ #add item
+    def add_item(self, item):
+        """Add a drink to the order."""
+        if not isinstance(item, (Drink, item)):
+            raise ValueError("Item must be an instance of Drink.")
+        self._items.append(item)
+
+    def remove_item(self, index):
+        """Remove a drink from the order by its index."""
+        if index <= 0 or index >= len(self._items):
+            raise IndexError("Invalid index.")
+        del self._items[index]
