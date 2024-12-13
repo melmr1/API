@@ -1,0 +1,59 @@
+class Food:
+
+   _food_price = {
+        "hotdog": 3.30,
+        "nacho chips": 4.00,
+        "ice cream": 1.00,
+        "hamburger": 2.50,
+        "french fries": 2.00,
+        "cotton candy": 1.50,
+        "apple": 1.75,
+   }
+
+   _topping_prices = {
+     "whipped cream": 0.00,
+     "caramel sauce": 0.75,
+     "chocolate sauce": 1.00,
+     "spicy nacho cheese": 1.50,
+     "nacho cheese": 1.00,
+     "chili": 2.00,
+     "ketchup": .50,
+     "BBQ sauce": 0.00,
+   }
+
+    def __init__(self,food_type):
+        if food_type.lower() not in self._food_price:
+            raise ValueError(f"Invaild food type.")
+        self._type = food_type.lower
+        self._toppings = set()
+        self._base_price = self._food_price[self._type]
+
+#acccessor for the base price
+    def get_base_price(self):
+       return self._base_price 
+
+#acessor for the base price
+    def get_type(self):
+       return self._type
+   
+#add topping
+    def add_topping(self, topping):
+       if topping.lower() not in self._topping_prices:
+           raise ValueError(f"Invalid topping")
+       self._toppings.add(topping.lower())
+
+#acessor for toppings
+    def get_toppings(self):
+       return list(self.toppings)
+       
+#count number of toppings
+    def get_num_toppings(self):
+       return len(self._toppings)
+#getter for total price
+    def get_total_price(self):
+        toppings_cost = sum(self._topping_prices[topping] for topping in self._toppings)
+        return self._base_price + toppings_cost
+   
+    def get_base_price(self):
+       return self._base_price 
+ 
