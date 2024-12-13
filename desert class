@@ -1,0 +1,58 @@
+
+class Desert:
+
+    _icecream_flavors = {
+        "mint chocolate chip": 4.00,
+        "chocolate": 3.00,
+        "Vanila Bean": 3.00,
+        "Banana": 3.50,
+        "Butter Pecan": 3.50,
+        "S'more": 4.00,
+    }
+
+    _icecream_topping = {
+        "cherry": 0.00,
+        "Carmael": 0.00,
+        "chocolate sauce": 0.00,
+        "storios": 1.00,
+        "Dig Dogs": 1.00,
+        "T&T's": 1.00,
+        "cookie dough": 1.00,
+        "pecans": 0.50,
+
+    }
+    def __init__(self,Desert_type):
+        if Desert_type.lower() not in self._Desert_price:
+            raise ValueError(f"Invaild food type.")
+        self._type = Desert_type.lower
+        self._icecream_topping = set()
+        self._base_price = self._Desert_price[self._type]
+
+#acccessor for the base price
+    def get_base_price(self):
+       return self._base_price 
+
+#acessor for the base price
+    def get_type(self):
+       return self._type
+   
+#add icecream topping
+    def add_icecream_topping(self, topping):
+       if topping.lower() not in self._icecream_topping_prices:
+           raise ValueError(f"Invalid topping")
+       self._icecream_topping.add(topping.lower())
+
+#acessor for toppings
+    def get_icecream_topping(self):
+       return list(self._icecream_topping)
+       
+#count number of icecream toppings
+    def get_num_icecream_toppings(self):
+       return len(self._icecream_topping)
+#getter for total price
+    def get_total_icecream_price(self):
+        icecream_toppings_cost = sum(self._icecream_topping_price[topping] for topping in self._icecream_topping)
+        return self._base_price + icecream_toppings_cost
+   
+    def get_base_price(self):
+       return self._base_price 
